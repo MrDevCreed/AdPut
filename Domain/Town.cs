@@ -4,6 +4,7 @@ namespace Domain
 {
     public class Town
     {
+        public Town() { }
         public Town(string name)
         {
             this.Name = name;
@@ -24,7 +25,7 @@ namespace Domain
             }
         }
 
-        public City City { get; private set; }
+        public virtual City City { get; private set; }
 
         //Functions
 

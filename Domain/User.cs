@@ -5,10 +5,12 @@ namespace Domain
 {
     public class User
     {
+        public User() { }
         public User(string userId, string name)
         {
             this.UserId = userId;
             this.Name = name;
+            this.Ads = new List<Ad>();
         }
 
         public int Id { get; private set; }
@@ -42,7 +44,7 @@ namespace Domain
             }
         }
 
-        public List<Ad> Ads { get; private set; }
+        public virtual List<Ad> Ads { get; private set; }
 
         //Functions
 

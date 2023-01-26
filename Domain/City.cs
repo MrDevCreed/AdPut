@@ -5,12 +5,15 @@ namespace Domain
 {
     public class City
     {
+        public City() { }
         public City(string name)
         {
             this.Name = name;
+            this.Towns = new List<Town>();
+            this.Addresses = new List<Address>();
         }
 
-        public string Id { get; private set; }
+        public int Id { get; private set; }
 
         private string _name;
         public string Name
@@ -25,9 +28,9 @@ namespace Domain
             }
         }
 
-        public List<Town> Towns { get; private set; }
+        public virtual List<Town> Towns { get; private set; }
 
-        public List<Address> Addresses { get; private set; }
+        public virtual List<Address> Addresses { get; private set; }
 
         //Functions
 

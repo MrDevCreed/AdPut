@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Data.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +27,18 @@ namespace AdPut
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddDbContext<Context>(P => P.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=SSPI;Initial Catalog=AdPut", b => b.MigrationsAssembly("AdPut")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>(P =>
+            {
+               P.Password.RequiredLength = 6;
+               P.Password.RequireLowercase = false;
+               P.Password.RequireUppercase = false;
+               P.Password.RequireNonAlphanumeric = false;
+               P.Password.RequireDigit = false;
+               P.User.RequireUniqueEmail = true;
+           }).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

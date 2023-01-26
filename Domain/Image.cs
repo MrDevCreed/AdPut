@@ -4,6 +4,7 @@ namespace Domain
 {
     public class Image
     {
+        public Image() { }
         public Image(string imagePath)
         {
             this.ImagePath = imagePath;
@@ -25,7 +26,7 @@ namespace Domain
             }
         }
 
-        public Ad Ad { get; private set; }
+        public virtual Ad Ad { get; private set; }
 
         //Functions
 

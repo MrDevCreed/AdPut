@@ -4,6 +4,7 @@ namespace Domain
 {
     public class Address
     {
+        public Address() { }
         public Address(City city, Town town)
         {
             this.City = city;
@@ -13,7 +14,7 @@ namespace Domain
         public int Id { get; private set; }
 
         private City _city;
-        public City City
+        public virtual City City
         {
             get { return _city; }
             private set
@@ -26,8 +27,7 @@ namespace Domain
         }
 
         private Town _town;
-
-        public Town Town
+        public virtual Town Town
         {
             get { return _town; }
             private set
@@ -39,7 +39,8 @@ namespace Domain
             }
         }
 
-        public Ad Ad { get; private set; }
+        public int AdId { get; private set; }
+        public virtual Ad Ad { get; private set; }
 
         //Functions
 

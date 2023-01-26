@@ -5,6 +5,7 @@ namespace Domain
 {
     public class Ad
     {
+        public Ad() { }
         public Ad(string name,
                  int price,
                  string description,
@@ -20,6 +21,7 @@ namespace Domain
             this.AdStatus = adStatus;
             this.AdState = AdState.Pending;
             this.CreatedAt = DateTime.UtcNow;
+            this.Images = new List<Image>();
         }
 
         public Ad(string name,
@@ -64,9 +66,9 @@ namespace Domain
             }
         }
 
-        public AdState AdState { get; private set; }
+        public virtual AdState AdState { get; private set; }
 
-        public DateTime CreatedAt { get; private set; }
+        public virtual DateTime CreatedAt { get; private set; }
 
         private string _description;
         public string Description
@@ -77,30 +79,17 @@ namespace Domain
                 if (String.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException("Description Is Null!");
 
-                if (value.Length <= 3 || value.Length < 250)
+                if (value.Length <= 3 || value.Length > 250)
                     throw new ArgumentOutOfRangeException("Description Length Should Between [3-250]");
 
                 _description = value;
             }
         }
 
-        public List<Image> Images { get; private set; }
-
-        private Address _address;
-        public Address Address
-        {
-            get { return _address; }
-            private set
-            {
-                if (value == null)
-                    throw new ArgumentNullException("Address Is Null!");
-
-                _address = value;
-            }
-        }
+        public virtual List<Image> Images { get; private set; }
 
         private Category _category;
-        public Category Category
+        public virtual Category Category
         {
             get { return _category; }
             private set
@@ -112,7 +101,20 @@ namespace Domain
             }
         }
 
-        public AdStatus AdStatus { get; private set; }
+        private Address _address;
+        public virtual Address Address
+        {
+            get { return _address; }
+            private set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("Address Is Null!");
+
+                _address = value;
+            }
+        }
+
+        public virtual AdStatus AdStatus { get; private set; }
 
         //Functions
 
