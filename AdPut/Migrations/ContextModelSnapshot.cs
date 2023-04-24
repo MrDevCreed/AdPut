@@ -80,8 +80,8 @@ namespace AdPut.Migrations
                     b.Property<int?>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TownId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TownId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -156,8 +156,10 @@ namespace AdPut.Migrations
 
             modelBuilder.Entity("Domain.Town", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("CityId")
                         .HasColumnType("int");
@@ -398,11 +400,13 @@ namespace AdPut.Migrations
                         .WithMany("Ads")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("Domain.User", null)
+                    b.HasOne("Domain.User", "User")
                         .WithMany("Ads")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Category");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Address", b =>

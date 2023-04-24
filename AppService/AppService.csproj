@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dto\Requests\Category\" />
-    <Folder Include="Dto\Responses\Category\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="implementations\" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Presentaion.Dto\Presentaion.Dto.csproj" />
+    <ProjectReference Include="..\Repository\Data.csproj" />
   </ItemGroup>
 
 </Project>

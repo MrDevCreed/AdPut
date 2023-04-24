@@ -12,6 +12,7 @@ namespace Data.Repositories.Interfaces
                                            int? maxPrice,
                                            int? categoryId,
                                            int? addressId,
+                                           int? userId,
                                            AdStatus? adStatus,
                                            bool? onlyWithPhoto);
     }

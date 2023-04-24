@@ -22,6 +22,7 @@ namespace Data.Repositories.implementations
                                                   int? maxPrice,
                                                   int? categoryId,
                                                   int? addressId,
+                                                  int? userId,
                                                   AdStatus? adStatus,
                                                   bool? onlyWithPhoto)
         {
@@ -41,6 +42,9 @@ namespace Data.Repositories.implementations
 
             if(addressId.HasValue && addressId != 0)
                 query = query.Where(P => P.Address.Id == addressId);
+
+            if (userId.HasValue && userId != 0)
+                query = query.Where(P => P.User.Id == userId);
 
             if (adStatus.HasValue)
                 query = query.Where(P => P.AdStatus == adStatus);

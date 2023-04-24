@@ -54,5 +54,10 @@ namespace Domain
 
             this.Towns.Remove(town);
         }
+
+        public void ChangeTowns(List<Town> towns)
+        {
+            this.Towns = towns;
+        }
     }
 }

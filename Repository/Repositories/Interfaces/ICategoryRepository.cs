@@ -7,5 +7,9 @@ namespace Data.Repositories.Interfaces
     public interface ICategoryRepository : IRepositoryBase<Category>
     {
         List<Category> GetList();
+
+        List<Category> GetBaseList();
+
+        bool IsTitleExists(string name);
     }
 }

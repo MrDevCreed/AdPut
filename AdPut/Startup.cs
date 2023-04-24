@@ -28,7 +28,7 @@ namespace AdPut
         {
             services.AddRazorPages();
 
-            services.AddDbContext<Context>(P => P.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=SSPI;Initial Catalog=AdPut", b => b.MigrationsAssembly("AdPut")));
+            services.AddDbContext<Context>(P => P.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=SSPI;Initial Catalog=AdPutDb", b => b.MigrationsAssembly("AdPut")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(P =>
             {
@@ -40,7 +40,7 @@ namespace AdPut
                P.User.RequireUniqueEmail = true;
            }).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

@@ -10,7 +10,7 @@ namespace Domain
             this.Name = name;
         }
 
-        public string Id { get; private set; }
+        public int Id { get; private set; }
 
         private string _name;
         public string Name

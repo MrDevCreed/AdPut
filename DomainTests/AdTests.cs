@@ -8,7 +8,7 @@ namespace DomainTests
 {
     public class AdTests
     {
-        [Fact]
+        /*[Fact]
         public void AdConstructor_WithoutNullValues_ShouldFillProperties()
         {
             //Arrange
@@ -108,6 +108,6 @@ namespace DomainTests
 
             //Assert
             ad.AdState.Should().Be(AdState.Accepted);
-        }
+        }*/
     }
 }

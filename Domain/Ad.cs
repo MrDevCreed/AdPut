@@ -11,6 +11,7 @@ namespace Domain
                  string description,
                  Address address,
                  Category category,
+                 User user,
                  AdStatus adStatus)
         {
             this.Name = name;
@@ -19,7 +20,7 @@ namespace Domain
             this.Address = address;
             this.Category = category;
             this.AdStatus = adStatus;
-            this.AdState = AdState.Pending;
+            this.User = user;
             this.CreatedAt = DateTime.UtcNow;
             this.Images = new List<Image>();
         }
@@ -29,8 +30,9 @@ namespace Domain
                 string description,
                 Address address,
                 Category category,
+                User user,
                 AdStatus adStatus,
-                List<Image> images) : this(name, price, description, address, category, adStatus)
+                List<Image> images) : this(name, price, description, address, category, user, adStatus)
         {
             this.Images = images;
         }
@@ -114,6 +116,19 @@ namespace Domain
             }
         }
 
+        private User _user;
+        public virtual User User
+        {
+            get { return _user; }
+            private set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("Address Is Null!");
+
+                _user = value;
+            }
+        }
+
         public virtual AdStatus AdStatus { get; private set; }
 
         //Functions
@@ -149,9 +164,19 @@ namespace Domain
             this.Images.Remove(image);
         }
 
+        public void SetImages(List<Image> images)
+        {
+            this.Images = images;
+        }
+
         public void ChangeAddress(Address address)
         {
             this.Address = address;
+        }
+
+        public void ChangeAdStatus(AdStatus adStatus)
+        {
+            this.AdStatus = adStatus;
         }
 
         public void Accept()

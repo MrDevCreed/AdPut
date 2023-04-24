@@ -19,5 +19,10 @@ namespace Data.Repositories.implementations
         {
             return _context.Cities.ToList();
         }
+
+        public bool IsNameExists(string name)
+        {
+            return _context.Cities.Where(P => P.Name == name).Any();
+        }
     }
 }

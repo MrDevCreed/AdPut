@@ -4,6 +4,7 @@ using Data.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using Data.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories.implementations
 {
@@ -15,9 +16,19 @@ namespace Data.Repositories.implementations
             this._context = context;
         }
 
+        public List<Category> GetBaseList()
+        {
+            return _context.Categories.Where(P => P.IsBaseCategory).Include(P => P.SubCategories).ToList();
+        }
+
         public List<Category> GetList()
         {
             return _context.Categories.ToList();
+        }
+
+        public bool IsTitleExists(string name)
+        {
+            return _context.Categories.Any(P => P.Title == name);
         }
     }
 }
